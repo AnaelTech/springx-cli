@@ -3,7 +3,6 @@ package com.cli.springx.command;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Optional;
 
 import com.cli.springx.SpringXCli;
 import com.cli.springx.service.InputOutput;
