@@ -3,9 +3,11 @@ package com.cli.springx.command;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 
 import com.cli.springx.service.InputOutput;
 import com.cli.springx.util.FsUtils;
+import com.cli.springx.util.PackageDetector;
 import com.cli.springx.util.TemplateRenderer;
 
 import com.cli.springx.SpringXCli;
@@ -17,7 +19,7 @@ import picocli.CommandLine;
 public class GenerateServiceCommand implements Runnable {
   private InputOutput inputOutput;
   private String baseSrcDir = "src/main/java";
-  private String basePackage = "com.cli.springx";
+  private Optional<String> basePackage = Optional.empty();
 
   @CommandLine.ParentCommand
   private SpringXCli parent;
@@ -32,6 +34,7 @@ public class GenerateServiceCommand implements Runnable {
 
   @Override
   public void run() {
+    this.basePackage = PackageDetector.detectPackageFromPom();
     commandLineUsage();
   }
 

@@ -3,10 +3,12 @@ package com.cli.springx.command;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 
 import com.cli.springx.SpringXCli;
 import com.cli.springx.service.InputOutput;
 import com.cli.springx.util.FsUtils;
+import com.cli.springx.util.PackageDetector;
 import com.cli.springx.util.TemplateRenderer;
 
 import picocli.CommandLine.Command;
@@ -16,7 +18,7 @@ import picocli.CommandLine;
 public class GenerateControllerCommand implements Runnable {
 
   private String baseSrcDir = "src/main/java";
-  private String basePackage = "com.cli.springx";
+  private Optional<String> basePackage = Optional.empty();
 
   private InputOutput inputOutput;
   @CommandLine.ParentCommand
@@ -32,6 +34,7 @@ public class GenerateControllerCommand implements Runnable {
 
   @Override
   public void run() {
+    this.basePackage = PackageDetector.detectPackageFromPom();
     commandLineUsage();
   }
 
@@ -41,6 +44,7 @@ public class GenerateControllerCommand implements Runnable {
 
   private void commandLineUsage() {
     InputOutput inputOutput = getInputOutput();
+    inputOutput.print("\u001B[32m> Base package :\u001B[0m" + basePackage);
     inputOutput.print("\u001B[32m> Entity name :\u001B[0m");
     String entityName = inputOutput.readInput().trim();
     if (entityName.isEmpty()) {
