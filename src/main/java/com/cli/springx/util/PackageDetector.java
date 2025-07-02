@@ -72,15 +72,12 @@ public class PackageDetector {
       if (!Files.exists(pomFile)) {
         return Optional.empty();
       }
-
       List<String> lines = Files.readAllLines(pomFile);
-
       return lines.stream()
           .filter(line -> line.trim().contains("<groupId>"))
           .map(line -> line.trim())
           .map(line -> line.replaceAll("</?groupId>", "").trim())
           .findFirst();
-
     } catch (IOException e) {
       return Optional.empty();
     }
