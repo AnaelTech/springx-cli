@@ -7,8 +7,6 @@ import com.github.jknack.handlebars.Template;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -31,7 +29,7 @@ public class TemplateRenderer {
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
-    context.put("package", basePackage);
+    context.put("package", basePackage.orElse("com.example.demo"));
     context.put("EntityName", entity.getName());
     context.put("lombok", lombok);
     context.put("attributes", entity.getAttributs());
@@ -45,7 +43,7 @@ public class TemplateRenderer {
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
-    context.put("package", basePackage);
+    context.put("package", basePackage.orElse("com.example.demo"));
     context.put("EntityName", entityName);
 
     return template.apply(context);
@@ -56,7 +54,7 @@ public class TemplateRenderer {
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
-    context.put("package", basePackage);
+    context.put("package", basePackage.orElse("com.example.demo"));
     context.put("EntityName", entityName);
 
     return template.apply(context);
@@ -67,7 +65,7 @@ public class TemplateRenderer {
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
-    context.put("package", basePackage);
+    context.put("package", basePackage.orElse("com.example.demo"));
     context.put("EntityName", entityName);
 
     return template.apply(context);
@@ -78,7 +76,7 @@ public class TemplateRenderer {
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
-    context.put("package", basePackage);
+    context.put("package", basePackage.orElse("com.example.demo"));
     context.put("EntityName", entityName);
 
     return template.apply(context);
