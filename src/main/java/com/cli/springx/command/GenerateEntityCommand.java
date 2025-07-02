@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import com.cli.springx.SpringXCli;
 import com.cli.springx.model.Attributs;
 import com.cli.springx.model.Entity;
 import com.cli.springx.service.InputOutput;
@@ -13,6 +14,7 @@ import com.cli.springx.util.LombokDetector;
 import com.cli.springx.util.TemplateRenderer;
 
 import picocli.CommandLine.Command;
+import picocli.CommandLine;
 
 @Command(name = "generate:entity", description = "Generates a new entity")
 public class GenerateEntityCommand implements Runnable {
@@ -21,12 +23,19 @@ public class GenerateEntityCommand implements Runnable {
   private String baseSrcDir = "src/main/java";
   private String basePackage = "com.cli.springx";
 
+  @CommandLine.ParentCommand
+  private SpringXCli parent;
+
   public GenerateEntityCommand() {
     // Constructeur vide requis par Picocli
   }
 
   public GenerateEntityCommand(InputOutput inputOutput) {
     this.inputOutput = inputOutput;
+  }
+
+  private InputOutput getInputOutput() {
+    return parent != null ? parent.getIo() : inputOutput;
   }
 
   @Override
@@ -45,6 +54,7 @@ public class GenerateEntityCommand implements Runnable {
   }
 
   private void commandLineUsage() {
+    InputOutput inputOutput = getInputOutput();
     inputOutput.print("\u001B[32m> Entity name :\u001B[0m");
     String entityName = inputOutput.readInput().trim();
     if (entityName.isEmpty()) {

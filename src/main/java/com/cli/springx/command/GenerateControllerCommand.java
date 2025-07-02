@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import com.cli.springx.SpringXCli;
 import com.cli.springx.service.InputOutput;
 import com.cli.springx.util.FsUtils;
 import com.cli.springx.util.TemplateRenderer;
 
 import picocli.CommandLine.Command;
+import picocli.CommandLine;
 
 @Command(name = "generate:controller", description = "Generates a controller class")
 public class GenerateControllerCommand implements Runnable {
@@ -17,6 +19,8 @@ public class GenerateControllerCommand implements Runnable {
   private String basePackage = "com.cli.springx";
 
   private InputOutput inputOutput;
+  @CommandLine.ParentCommand
+  private SpringXCli parent;
 
   public GenerateControllerCommand() {
     // Constructeur vide requis par Picocli
@@ -31,7 +35,12 @@ public class GenerateControllerCommand implements Runnable {
     commandLineUsage();
   }
 
+  private InputOutput getInputOutput() {
+    return parent != null ? parent.getIo() : inputOutput;
+  }
+
   private void commandLineUsage() {
+    InputOutput inputOutput = getInputOutput();
     inputOutput.print("\u001B[32m> Entity name :\u001B[0m");
     String entityName = inputOutput.readInput().trim();
     if (entityName.isEmpty()) {

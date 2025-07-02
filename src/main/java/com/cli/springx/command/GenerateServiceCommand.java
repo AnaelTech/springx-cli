@@ -8,13 +8,19 @@ import com.cli.springx.service.InputOutput;
 import com.cli.springx.util.FsUtils;
 import com.cli.springx.util.TemplateRenderer;
 
+import com.cli.springx.SpringXCli;
+
 import picocli.CommandLine.Command;
+import picocli.CommandLine;
 
 @Command(name = "generate:service", description = "Generates a new service class")
 public class GenerateServiceCommand implements Runnable {
   private InputOutput inputOutput;
   private String baseSrcDir = "src/main/java";
   private String basePackage = "com.cli.springx";
+
+  @CommandLine.ParentCommand
+  private SpringXCli parent;
 
   public GenerateServiceCommand() {
     // Constructeur vide requis par Picocli
@@ -29,7 +35,12 @@ public class GenerateServiceCommand implements Runnable {
     commandLineUsage();
   }
 
+  private InputOutput getInputOutput() {
+    return parent != null ? parent.getIo() : inputOutput;
+  }
+
   private void commandLineUsage() {
+    InputOutput inputOutput = getInputOutput();
     inputOutput.print("\u001B[32m> Entity name :\u001B[0m");
     String entityName = inputOutput.readInput().trim();
     if (entityName.isEmpty()) {
