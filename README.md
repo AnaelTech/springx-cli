@@ -1,21 +1,104 @@
 # springx-cli
 
-Try to create CLI for Spring Boot with simple template
+SpringX CLI est un générateur de code pour Spring Boot, simple et rapide à utiliser en ligne de commande.
+
+SpringX CLI is a fast and simple code generator for Spring Boot, designed for use from the command line.
 
 ## Description
 
-Try to create CLI for Spring Boot with simple template
+SpringX CLI vous permet de générer rapidement des entités, contrôleurs, services, repositories et DTOs pour vos projets Spring Boot grâce à des templates interactifs.
+
+SpringX CLI lets you quickly generate entities, controllers, services, repositories, and DTOs for your Spring Boot projects using interactive templates.
 
 ## Installation
 
+### 1. Cloner le projet
+
 ```bash
-# Instructions d'installation
+git clone https://github.com/tonuser/tonrepo.git
+cd tonrepo
+```
+
+### 2. Installer le CLI dans votre `$PATH`
+
+```bash
+./install.sh
+```
+
+Make sure `~/.local/bin` is in your `$PATH`:
+
+Assurez-vous que `~/.local/bin` est dans votre `$PATH` :
+
+```bash
+echo $PATH
+```
+
+If needed, add this to your `~/.bashrc` or `~/.zshrc`:
+
+Si besoin, ajoutez à votre `~/.bashrc` ou `~/.zshrc` :
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
 ## Utilisation
 
+Affichez toutes les commandes disponibles :
+
+Show all available commands:
+
 ```bash
-# Exemples d'utilisation
+springx --help
+```
+
+Générez une entité :
+
+Generate an entity:
+
+```bash
+springx generate:entity
+```
+
+Générez un contrôleur :
+
+Generate a controller:
+
+```bash
+springx generate:controller
+```
+
+Générez un service :
+
+Generate a service:
+
+```bash
+springx generate:service
+```
+
+Générez un repository :
+
+Generate a repository:
+
+```bash
+springx generate:repository
+```
+
+Générez un DTO :
+
+Generate a DTO:
+
+```bash
+# This command doesn´t implemented yet
+springx generate-dto
+```
+
+Affichez la version :
+
+Show the CLI version:
+
+```bash
+# This command doesn´t implemented yet
+springx --version
 ```
 
 ## Contribution
@@ -28,10 +111,20 @@ Les contributions sont les bienvenues ! N'hésitez pas à :
 4. Push vers la branche
 5. Ouvrir une Pull Request
 
+Contributions are welcome!
+
+Feel free to:
+
+1. Fork the project
+2. Create a branch for your feature
+3. Commit your changes
+4. Push to your branch
+5. Open a Pull Request
+
 ## Licence
 
 Ce projet est sous licence [MIT](LICENSE).
 
 ---
 
->Généré avec le script GitHub Repository Creator
+> Généré avec le script GitHub Repository Creator
