@@ -19,7 +19,7 @@ public class GenerateRepositoryCommand implements Runnable {
 
   private InputOutput inputOutput;
   private String baseSrcDir = "src/main/java";
-  private Optional<String> basePackage = Optional.empty();
+  private String basePackage;
 
   @CommandLine.ParentCommand
   private SpringXCli parent;
@@ -34,7 +34,7 @@ public class GenerateRepositoryCommand implements Runnable {
 
   @Override
   public void run() {
-    this.basePackage = PackageDetector.detectPackageFromPom();
+    this.basePackage = PackageDetector.detectBasePackage();
     commandLineUsage();
   }
 

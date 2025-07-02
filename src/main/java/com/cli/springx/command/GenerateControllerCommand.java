@@ -18,7 +18,7 @@ import picocli.CommandLine;
 public class GenerateControllerCommand implements Runnable {
 
   private String baseSrcDir = "src/main/java";
-  private Optional<String> basePackage = Optional.empty();
+  private String basePackage;
 
   private InputOutput inputOutput;
   @CommandLine.ParentCommand
@@ -34,7 +34,7 @@ public class GenerateControllerCommand implements Runnable {
 
   @Override
   public void run() {
-    this.basePackage = PackageDetector.detectPackageFromPom();
+    this.basePackage = PackageDetector.detectBasePackage();
     commandLineUsage();
   }
 
