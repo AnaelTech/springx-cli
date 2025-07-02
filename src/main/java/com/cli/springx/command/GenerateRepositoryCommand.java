@@ -17,6 +17,10 @@ public class GenerateRepositoryCommand implements Runnable {
   private String baseSrcDir = "src/main/java";
   private String basePackage = "com.cli.springx";
 
+  public GenerateRepositoryCommand() {
+    // Constructeur vide requis par Picocli
+  }
+
   public GenerateRepositoryCommand(InputOutput inputOutput) {
     this.inputOutput = inputOutput;
   }

@@ -16,6 +16,10 @@ public class GenerateServiceCommand implements Runnable {
   private String baseSrcDir = "src/main/java";
   private String basePackage = "com.cli.springx";
 
+  public GenerateServiceCommand() {
+    // Constructeur vide requis par Picocli
+  }
+
   public GenerateServiceCommand(InputOutput inputOutput) {
     this.inputOutput = inputOutput;
   }

@@ -21,6 +21,10 @@ public class GenerateEntityCommand implements Runnable {
   private String baseSrcDir = "src/main/java";
   private String basePackage = "com.cli.springx";
 
+  public GenerateEntityCommand() {
+    // Constructeur vide requis par Picocli
+  }
+
   public GenerateEntityCommand(InputOutput inputOutput) {
     this.inputOutput = inputOutput;
   }
