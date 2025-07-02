@@ -1,0 +1,3 @@
+#!/bin/sh
+./mvnw package -q
+java -jar target/springx-cli.jar "$@"
