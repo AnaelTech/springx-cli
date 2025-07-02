@@ -18,6 +18,10 @@ public class GenerateControllerCommand implements Runnable {
 
   private InputOutput inputOutput;
 
+  public GenerateControllerCommand() {
+    // Constructeur vide requis par Picocli
+  }
+
   public GenerateControllerCommand(InputOutput inputOutput) {
     this.inputOutput = inputOutput;
   }

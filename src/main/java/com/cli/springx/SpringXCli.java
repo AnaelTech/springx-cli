@@ -42,8 +42,11 @@ public class SpringXCli implements Runnable {
     // GenerateRepositoryCommand generateRepositoryCommand = new
     // GenerateRepositoryCommand(io);
     // generateRepositoryCommand.run();
-    GenerateServiceCommand generateServiceCommand = new GenerateServiceCommand(io);
-    generateServiceCommand.run();
+    // GenerateServiceCommand generateServiceCommand = new
+    // GenerateServiceCommand(io);
+    // generateServiceCommand.run();
+    ShowHelpCommand showHelpCommand = new ShowHelpCommand(io);
+    showHelpCommand.run();
   }
 
 }
