@@ -24,12 +24,12 @@ public class TemplateRenderer {
     }
   }
 
-  public String renderEntityTemplate(Entity entity, boolean lombok, Optional<String> basePackage) throws IOException {
+  public String renderEntityTemplate(Entity entity, boolean lombok, String basePackage) throws IOException {
     String templateStr = readTemplateFromClasspath("templates/entity.tpl");
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
-    context.put("package", basePackage.orElse("com.example.demo"));
+    context.put("package", basePackage);
     context.put("EntityName", entity.getName());
     context.put("lombok", lombok);
     context.put("attributes", entity.getAttributs());
@@ -38,45 +38,45 @@ public class TemplateRenderer {
     return template.apply(context);
   }
 
-  public String renderControllerTemplate(String entityName, Optional<String> basePackage) throws IOException {
+  public String renderControllerTemplate(String entityName, String basePackage) throws IOException {
     String templateStr = readTemplateFromClasspath("templates/controller.tpl");
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
-    context.put("package", basePackage.orElse("com.example.demo"));
+    context.put("package", basePackage);
     context.put("EntityName", entityName);
 
     return template.apply(context);
   }
 
-  public String renderServiceTemplate(String entityName, Optional<String> basePackage) throws IOException {
+  public String renderServiceTemplate(String entityName, String basePackage) throws IOException {
     String templateStr = readTemplateFromClasspath("templates/service.tpl");
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
-    context.put("package", basePackage.orElse("com.example.demo"));
+    context.put("package", basePackage);
     context.put("EntityName", entityName);
 
     return template.apply(context);
   }
 
-  public String renderServiceImplTemplate(String entityName, Optional<String> basePackage) throws IOException {
+  public String renderServiceImplTemplate(String entityName, String basePackage) throws IOException {
     String templateStr = readTemplateFromClasspath("templates/serviceImpl.tpl");
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
-    context.put("package", basePackage.orElse("com.example.demo"));
+    context.put("package", basePackage);
     context.put("EntityName", entityName);
 
     return template.apply(context);
   }
 
-  public String renderRepositoryTemplate(String entityName, Optional<String> basePackage) throws IOException {
+  public String renderRepositoryTemplate(String entityName, String basePackage) throws IOException {
     String templateStr = readTemplateFromClasspath("templates/repository.tpl");
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
-    context.put("package", basePackage.orElse("com.example.demo"));
+    context.put("package", basePackage);
     context.put("EntityName", entityName);
 
     return template.apply(context);
