@@ -72,12 +72,28 @@ public class PackageDetector {
       if (!Files.exists(pomFile)) {
         return Optional.empty();
       }
-      List<String> lines = Files.readAllLines(pomFile);
-      return lines.stream()
-          .filter(line -> line.trim().contains("<groupId>"))
-          .map(line -> line.trim())
-          .map(line -> line.replaceAll("</?groupId>", "").trim())
-          .findFirst();
+      String groupId = null;
+      boolean beforeParent = true;
+      for (String line : Files.readAllLines(pomFile)) {
+        String trimmed = line.trim();
+        if (trimmed.startsWith("<parent>")) {
+          beforeParent = false;
+        }
+        if (beforeParent && trimmed.startsWith("<groupId>") && groupId == null) {
+          groupId = trimmed.replaceAll("</?groupId>", "").trim();
+        }
+      }
+      // Si pas trouvé avant <parent>, cherche après (cas rare)
+      if (groupId == null) {
+        for (String line : Files.readAllLines(pomFile)) {
+          String trimmed = line.trim();
+          if (trimmed.startsWith("<groupId>")) {
+            groupId = trimmed.replaceAll("</?groupId>", "").trim();
+            break;
+          }
+        }
+      }
+      return Optional.ofNullable(groupId);
     } catch (IOException e) {
       return Optional.empty();
     }
