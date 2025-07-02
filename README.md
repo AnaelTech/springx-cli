@@ -15,11 +15,23 @@ SpringX CLI lets you quickly generate entities, controllers, services, repositor
 ### 1. Cloner le projet
 
 ```bash
-git clone https://github.com/tonuser/tonrepo.git
-cd tonrepo
+git clone https://github.com/AnaelTech/springx-cli.git
+cd springx-cli
 ```
 
-### 2. Installer le CLI dans votre `$PATH`
+### 2. Ajouter les permissions d'exécution
+
+```bash
+chmod +x springx install.sh
+```
+
+### 3. Clean les packages
+
+```bash
+mvn clean package -DskipTests
+```
+
+### 4. Installer le CLI dans votre `$PATH`
 
 ```bash
 ./install.sh
