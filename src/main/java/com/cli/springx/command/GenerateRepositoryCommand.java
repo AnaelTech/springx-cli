@@ -7,8 +7,10 @@ import java.nio.file.Path;
 import com.cli.springx.service.InputOutput;
 import com.cli.springx.util.FsUtils;
 import com.cli.springx.util.TemplateRenderer;
+import com.cli.springx.SpringXCli;
 
 import picocli.CommandLine.Command;
+import picocli.CommandLine;
 
 @Command(name = "generate:repository", description = "Generates a new repository class")
 public class GenerateRepositoryCommand implements Runnable {
@@ -16,6 +18,9 @@ public class GenerateRepositoryCommand implements Runnable {
   private InputOutput inputOutput;
   private String baseSrcDir = "src/main/java";
   private String basePackage = "com.cli.springx";
+
+  @CommandLine.ParentCommand
+  private SpringXCli parent;
 
   public GenerateRepositoryCommand() {
     // Constructeur vide requis par Picocli
@@ -30,7 +35,12 @@ public class GenerateRepositoryCommand implements Runnable {
     commandLineUsage();
   }
 
+  private InputOutput getInputOutput() {
+    return parent != null ? parent.getIo() : inputOutput;
+  }
+
   private void commandLineUsage() {
+    InputOutput inputOutput = getInputOutput();
     inputOutput.print("\u001B[32m> Entity name :\u001B[0m");
     String entityName = inputOutput.readInput().trim();
     if (entityName.isEmpty()) {

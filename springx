@@ -1,3 +1,9 @@
 #!/bin/sh
-./mvnw package -q
-java -jar target/springx-cli.jar "$@"
+JAR="target/springx-cli-1.0-SNAPSHOT.jar"
+if [ ! -f "$JAR" ]; then
+	./mvnw package -q || {
+		echo "Build failed. Please check your Maven/Java setup."
+		exit 1
+	}
+fi
+java -jar "$JAR" "$@"

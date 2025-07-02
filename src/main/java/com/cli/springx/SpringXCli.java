@@ -34,19 +34,10 @@ public class SpringXCli implements Runnable {
   @Override
   public void run() {
     System.out.println("Welcome to SpringX CLI! - use --help to see available commands");
-    // GenerateEntityCommand generateEntityCommand = new GenerateEntityCommand(io);
-    // generateEntityCommand.run();
-    // GenerateControllerCommand generateControllerCommand = new
-    // GenerateControllerCommand(io);
-    // generateControllerCommand.run();
-    // GenerateRepositoryCommand generateRepositoryCommand = new
-    // GenerateRepositoryCommand(io);
-    // generateRepositoryCommand.run();
-    // GenerateServiceCommand generateServiceCommand = new
-    // GenerateServiceCommand(io);
-    // generateServiceCommand.run();
-    // ShowHelpCommand showHelpCommand = new ShowHelpCommand(io);
-    // showHelpCommand.run();
+  }
+
+  public InputOutput getIo() {
+    return io;
   }
 
 }

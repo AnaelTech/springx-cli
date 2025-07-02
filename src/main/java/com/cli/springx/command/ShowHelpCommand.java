@@ -11,6 +11,9 @@ public class ShowHelpCommand implements Runnable {
 
   private static InputOutput inputOutput;
 
+  @CommandLine.ParentCommand
+  private SpringXCli parent;
+
   public ShowHelpCommand() {
     // Constructeur vide requis par Picocli
   }
@@ -19,9 +22,13 @@ public class ShowHelpCommand implements Runnable {
     ShowHelpCommand.inputOutput = inputOutput;
   }
 
+  private InputOutput getInputOutput() {
+    return parent != null ? parent.getIo() : inputOutput;
+  }
+
   @Override
   public void run() {
-    if (inputOutput == null) {
+    if (getInputOutput() == null) {
       System.out.println("Erreur : inputOutput non initialisé.");
       return;
     }
@@ -29,6 +36,7 @@ public class ShowHelpCommand implements Runnable {
   }
 
   private void commandLineUsage() {
+    InputOutput inputOutput = getInputOutput();
     CommandLine cmd = new CommandLine(new SpringXCli());
     for (CommandLine sub : cmd.getSubcommands().values()) {
       Object command = sub.getCommand();
