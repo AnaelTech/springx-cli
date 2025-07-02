@@ -7,6 +7,8 @@ import com.cli.springx.command.GenerateRepositoryCommand;
 import com.cli.springx.command.GenerateServiceCommand;
 import com.cli.springx.command.ShowHelpCommand;
 import com.cli.springx.command.ShowVersionCommand;
+import com.cli.springx.service.InputOutput;
+import com.cli.springx.service.impl.InputOutputImpl;
 
 import picocli.CommandLine;
 
@@ -21,14 +23,19 @@ import picocli.CommandLine;
 }, description = "SpringX CLI - a command line tool for SpringX")
 
 public class SpringXCli implements Runnable {
+  private InputOutput io = new InputOutputImpl();
+
   public static void main(String[] args) {
     int exitCode = new CommandLine(new SpringXCli()).execute(args);
+
     System.exit(exitCode);
   }
 
   @Override
   public void run() {
     System.out.println("Welcome to SpringX CLI! - use --help to see available commands");
+    GenerateEntityCommand generateEntityCommand = new GenerateEntityCommand(io);
+    generateEntityCommand.run();
   }
 
 }
