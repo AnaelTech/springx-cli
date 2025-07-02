@@ -9,12 +9,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class TemplateRenderer {
 
   private Handlebars handlebars = new Handlebars();
 
-  public String renderEntityTemplate(Entity entity, boolean lombok, String basePackage) throws IOException {
+  public String renderEntityTemplate(Entity entity, boolean lombok, Optional<String> basePackage) throws IOException {
     String templateStr = Files.readString(Path.of("src/main/resources/templates/entity.tpl"));
     Template template = handlebars.compileInline(templateStr);
 
@@ -28,7 +29,7 @@ public class TemplateRenderer {
     return template.apply(context);
   }
 
-  public String renderControllerTemplate(String entityName, String basePackage) throws IOException {
+  public String renderControllerTemplate(String entityName, Optional<String> basePackage) throws IOException {
     String templateStr = Files.readString(Path.of("src/main/resources/templates/controller.tpl"));
     Template template = handlebars.compileInline(templateStr);
 
@@ -39,7 +40,7 @@ public class TemplateRenderer {
     return template.apply(context);
   }
 
-  public String renderServiceTemplate(String entityName, String basePackage) throws IOException {
+  public String renderServiceTemplate(String entityName, Optional<String> basePackage) throws IOException {
     String templateStr = Files.readString(Path.of("src/main/resources/templates/service.tpl"));
     Template template = handlebars.compileInline(templateStr);
 
@@ -50,7 +51,7 @@ public class TemplateRenderer {
     return template.apply(context);
   }
 
-  public String renderServiceImplTemplate(String entityName, String basePackage) throws IOException {
+  public String renderServiceImplTemplate(String entityName, Optional<String> basePackage) throws IOException {
     String templateStr = Files.readString(Path.of("src/main/resources/templates/serviceImpl.tpl"));
     Template template = handlebars.compileInline(templateStr);
 
@@ -61,7 +62,7 @@ public class TemplateRenderer {
     return template.apply(context);
   }
 
-  public String renderRepositoryTemplate(String entityName, String basePackage) throws IOException {
+  public String renderRepositoryTemplate(String entityName, Optional<String> basePackage) throws IOException {
     String templateStr = Files.readString(Path.of("src/main/resources/templates/repository.tpl"));
     Template template = handlebars.compileInline(templateStr);
 

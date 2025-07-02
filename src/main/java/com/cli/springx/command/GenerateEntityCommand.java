@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 import com.cli.springx.SpringXCli;
 import com.cli.springx.model.Attributs;
@@ -11,6 +12,7 @@ import com.cli.springx.model.Entity;
 import com.cli.springx.service.InputOutput;
 import com.cli.springx.util.FsUtils;
 import com.cli.springx.util.LombokDetector;
+import com.cli.springx.util.PackageDetector;
 import com.cli.springx.util.TemplateRenderer;
 
 import picocli.CommandLine.Command;
@@ -21,7 +23,7 @@ public class GenerateEntityCommand implements Runnable {
 
   private InputOutput inputOutput;
   private String baseSrcDir = "src/main/java";
-  private String basePackage = "com.cli.springx";
+  private Optional<String> basePackage = Optional.empty();
 
   @CommandLine.ParentCommand
   private SpringXCli parent;
@@ -40,6 +42,7 @@ public class GenerateEntityCommand implements Runnable {
 
   @Override
   public void run() {
+    this.basePackage = PackageDetector.detectPackageFromPom();
     commandLineUsage();
   }
 
