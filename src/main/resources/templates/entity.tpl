@@ -16,7 +16,6 @@ import lombok.AllArgsConstructor;
 public class {{EntityName}} {
 
     {{#each attributes}}
-    {{#if isId}}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     {{/if}}
