@@ -5,6 +5,8 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -15,8 +17,17 @@ public class TemplateRenderer {
 
   private Handlebars handlebars = new Handlebars();
 
+  private String readTemplateFromClasspath(String resourcePath) throws IOException {
+    try (InputStream is = getClass().getClassLoader().getResourceAsStream(resourcePath)) {
+      if (is == null) {
+        throw new IOException("Template not found: " + resourcePath);
+      }
+      return new String(is.readAllBytes(), StandardCharsets.UTF_8);
+    }
+  }
+
   public String renderEntityTemplate(Entity entity, boolean lombok, Optional<String> basePackage) throws IOException {
-    String templateStr = Files.readString(Path.of("src/main/resources/templates/entity.tpl"));
+    String templateStr = readTemplateFromClasspath("templates/entity.tpl");
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
@@ -30,7 +41,7 @@ public class TemplateRenderer {
   }
 
   public String renderControllerTemplate(String entityName, Optional<String> basePackage) throws IOException {
-    String templateStr = Files.readString(Path.of("src/main/resources/templates/controller.tpl"));
+    String templateStr = readTemplateFromClasspath("templates/controller.tpl");
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
@@ -41,7 +52,7 @@ public class TemplateRenderer {
   }
 
   public String renderServiceTemplate(String entityName, Optional<String> basePackage) throws IOException {
-    String templateStr = Files.readString(Path.of("src/main/resources/templates/service.tpl"));
+    String templateStr = readTemplateFromClasspath("templates/service.tpl");
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
@@ -52,7 +63,7 @@ public class TemplateRenderer {
   }
 
   public String renderServiceImplTemplate(String entityName, Optional<String> basePackage) throws IOException {
-    String templateStr = Files.readString(Path.of("src/main/resources/templates/serviceImpl.tpl"));
+    String templateStr = readTemplateFromClasspath("templates/serviceImpl.tpl");
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
@@ -63,7 +74,7 @@ public class TemplateRenderer {
   }
 
   public String renderRepositoryTemplate(String entityName, Optional<String> basePackage) throws IOException {
-    String templateStr = Files.readString(Path.of("src/main/resources/templates/repository.tpl"));
+    String templateStr = readTemplateFromClasspath("templates/repository.tpl");
     Template template = handlebars.compileInline(templateStr);
 
     Map<String, Object> context = new HashMap<>();
