@@ -38,4 +38,37 @@ public class TemplateRenderer {
 
     return template.apply(context);
   }
+
+  public String renderServiceTemplate(String entityName, String basePackage) throws IOException {
+    String templateStr = Files.readString(Path.of("src/main/resources/templates/service.tpl"));
+    Template template = handlebars.compileInline(templateStr);
+
+    Map<String, Object> context = new HashMap<>();
+    context.put("package", basePackage);
+    context.put("EntityName", entityName);
+
+    return template.apply(context);
+  }
+
+  public String renderServiceImplTemplate(String entityName, String basePackage) throws IOException {
+    String templateStr = Files.readString(Path.of("src/main/resources/templates/serviceImpl.tpl"));
+    Template template = handlebars.compileInline(templateStr);
+
+    Map<String, Object> context = new HashMap<>();
+    context.put("package", basePackage);
+    context.put("EntityName", entityName);
+
+    return template.apply(context);
+  }
+
+  public String renderRepositoryTemplate(String entityName, String basePackage) throws IOException {
+    String templateStr = Files.readString(Path.of("src/main/resources/templates/repository.tpl"));
+    Template template = handlebars.compileInline(templateStr);
+
+    Map<String, Object> context = new HashMap<>();
+    context.put("package", basePackage);
+    context.put("EntityName", entityName);
+
+    return template.apply(context);
+  }
 }
