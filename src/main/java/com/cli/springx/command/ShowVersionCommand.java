@@ -41,7 +41,7 @@ public class ShowVersionCommand implements Runnable {
     try {
       String content = new String(Files.readAllBytes(Paths.get(".release-please-manifest.json")));
       JSONObject json = new JSONObject(content);
-      String version = json.getString("springx-cli");
+      String version = json.getString(".");
       inputOutput.print("SpringX CLI version " + version);
     } catch (Exception e) {
       inputOutput.print("SpringX CLI version (inconnue)");
