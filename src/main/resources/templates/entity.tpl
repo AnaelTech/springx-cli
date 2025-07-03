@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 {{/if}}
 
 @Entity
+@Table(name = "{{EntityName}}")
 {{#if lombok}}
 @Data
 @NoArgsConstructor
@@ -16,6 +17,7 @@ import lombok.AllArgsConstructor;
 public class {{EntityName}} {
 
     {{#each attributes}}
+    {{#if isId}}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     {{/if}}
