@@ -13,7 +13,7 @@ SpringX CLI lets you quickly generate entities, controllers, services, repositor
 ## TODO
 
 - [ ] Générer un DTO
-- [ ] Show version
+- [x] Show version
 - [ ] After entity generation ask for service, repository and controller generation
 - [ ] Add autocomplete for commands
 

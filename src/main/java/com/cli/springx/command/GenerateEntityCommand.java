@@ -130,13 +130,14 @@ public class GenerateEntityCommand implements Runnable {
 
     // Création dossier model si absent
     try {
-      // TODO: Condition si dossier business existe alors mettre dans ce dossier sinon
-      // dans model
-      String entityDir = FsUtils.preparePackagePath(baseSrcDir, basePackage, "model");
-      // Génération code
-
-      generateEntity(entity, lombokPresent, entityDir);
-      inputOutput.print("🎉\u001B[32m Entity " + entityName + " generated successfully!\u001B[0m🎉");
+      if (FsUtils.checkIfFolderExists(baseSrcDir, basePackage, "business")) {
+        String entityDir = FsUtils.preparePackagePath(baseSrcDir, basePackage, "business");
+        generateEntity(entity, lombokPresent, entityDir);
+      } else {
+        String entityDir = FsUtils.preparePackagePath(baseSrcDir, basePackage, "model");
+        generateEntity(entity, lombokPresent, entityDir);
+        inputOutput.print("🎉\u001B[32m Entity " + entityName + " generated successfully!\u001B[0m🎉");
+      }
     } catch (IOException e) {
       inputOutput.printError("\u001B[31mError while generating entity: " + e.getMessage() + "\u001B[0m");
     }
