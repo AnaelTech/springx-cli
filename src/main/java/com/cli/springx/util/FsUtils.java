@@ -47,4 +47,10 @@ public class FsUtils {
       Files.createDirectories(path);
     }
   }
+
+  public static boolean checkIfFolderExists(String folderPath, String basePackage, String folder) {
+    Path path = Paths
+        .get(folderPath + File.separator + basePackage.replace('.', File.separatorChar) + File.separator + folder);
+    return Files.exists(path) && Files.isDirectory(path);
+  }
 }
