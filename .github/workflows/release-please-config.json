@@ -1,0 +1,8 @@
+{
+  "release-type": "java",
+  "packages": {
+    ".": {
+      "component": "springx-cli"
+    }
+  }
+}
