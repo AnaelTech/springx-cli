@@ -60,7 +60,7 @@ public class GenerateControllerCommand implements Runnable {
     }
   }
 
-  private void generateController(String entityName, String entityDir) throws IOException {
+  public void generateController(String entityName, String entityDir) throws IOException {
     TemplateRenderer renderer = new TemplateRenderer();
     String controllerCode = renderer.renderControllerTemplate(entityName, basePackage);
     Files.writeString(Path.of(entityDir + "/" + entityName + "Controller.java"), controllerCode);
