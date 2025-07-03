@@ -10,6 +10,13 @@ SpringX CLI vous permet de générer rapidement des entités, contrôleurs, serv
 
 SpringX CLI lets you quickly generate entities, controllers, services, repositories, and DTOs for your Spring Boot projects using interactive templates.
 
+## TODO
+
+- [ ] Générer un DTO
+- [ ] Show version
+- [ ] After entity generation ask for service, repository and controller generation
+- [ ] Add autocomplete for commands
+
 ## Installation
 
 ### 1. Cloner le projet
