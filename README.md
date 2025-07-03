@@ -29,7 +29,7 @@ cd springx-cli
 ### 2. Ajouter les permissions d'exécution
 
 ```bash
-chmod +x springx install.sh
+chmod +x springx install.sh update.sh
 ```
 
 ### 3. Clean les packages
@@ -59,6 +59,12 @@ Si besoin, ajoutez à votre `~/.bashrc` ou `~/.zshrc` :
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
 ```
+
+## Mise à jour
+
+Pour mettre à jour votre projet, il suffit de lancer simplement `./update.sh` :
+
+To update your project, simply run: `./update.sh`
 
 ## Utilisation
 
