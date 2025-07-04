@@ -66,7 +66,7 @@ public class GenerateEntityCommand implements Runnable {
 
     Entity entity = new Entity(entityName);
     // Ajout d'un id par défaut
-    entity.addAttributs(new Attributs("id", "Long"));
+    entity.addAttributs(new Attributs("id", "Long", true));
 
     // Lecture attributs
     while (true) {
