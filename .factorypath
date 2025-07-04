@@ -11,4 +11,5 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/ow2/asm/asm-analysis/7.3.1/asm-analysis-7.3.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/ow2/asm/asm-tree/7.3.1/asm-tree-7.3.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/ow2/asm/asm-util/7.3.1/asm-util-7.3.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/json/json/20250517/json-20250517.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>

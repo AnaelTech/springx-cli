@@ -18,6 +18,7 @@ public class {{EntityName}} {
 
     {{#each attributes}}
     {{#if isId}}
+    {{#if name = "id"}}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     {{/if}}
